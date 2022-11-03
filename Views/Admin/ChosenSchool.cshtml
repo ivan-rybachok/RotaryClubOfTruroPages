@@ -1,0 +1,64 @@
+@model StudentManager;
+
+<form asp-controller="Admin" asp-action="Index">
+    <div class="nav-bar">
+        <div class="login-band">
+            <form method="post">
+                <a type="submit" asp-controller="Login" asp-action="Logout" value="Logout" class="login-link-color">Logout</a><span id="lblExpire" class="text-danger-timeout" style="margin-left:10px"></span>
+            </form>
+        </div>
+    <div><img src="/images/rotorycluboftrurologo.png" alt="rotorycluboftrurologo" /></div>
+    <div class="main-admin">
+        <div>
+            <form asp-controller="Admin" asp-action="SelectedSchoolDropDown">
+                <div class="form-group">
+                    <label>Select a school to see student applications: </label><br>
+                        <select class="dropdown" id="schools" asp-for="@Model.schoolID" aria-selected="1" class="btn btn-dark form-control text-left" style="width:300px;max-width:300px;" asp-items="ViewBag.selectList" onchange="this.form.submit();">
+                        </select> 
+                </div>
+                <div class="table-centered">
+                    <table class="table-choosen">
+                        <tbody>
+                            @foreach (var student in ViewBag.list) {
+
+                                <tr>
+                                @* <th>@Model.count</th> *@
+
+                                    <td>@Model.count
+                                        <td class="names">
+                                            <a class="table-links-names" asp-controller="Admin" asp-action="StudentName" asp-route-appID="@student.appID">@student.appName</a>
+                                        </td>
+                                    </td>
+                                </tr>
+                                Model.count++;
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+                @if ((Model.getAllStudents().Count != 0) && (@Model.schoolID == 0)) {
+
+                <div class="btn-delete">
+                    <label>Delete all saved applications (This will permanently remove all student applications)</label><br><br>
+                    <button asp-controller="Admin" asp-action="DeleteAll">Delete All Aplications</button>
+                    @* <a asp-controller="Admin" asp-action="DropDown"><input type="button" class="btn btn-warning" value="Cancel" /></a> *@
+                </div>
+                }
+                
+                @if ((Model.getAllStudents().Count == 0) && (@Model.schoolID == 0)){
+                    <div>There are no applications in the database. </div>
+                }
+
+                @if ((Model.getStudentsSchoolID(Model.schoolID).Count == 0) && (@Model.schoolID != 0)) {
+                    <div>There are no applications from the selected school. </div>
+                }
+                .
+            </form>
+        </div>
+    </div>
+</form>
+@section scripts {
+    <script>
+        startAutoLogout();
+    </script>
+}

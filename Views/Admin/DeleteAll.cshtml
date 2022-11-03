@@ -1,0 +1,27 @@
+@model StudentManager;
+
+<form method="post">
+    <div class="nav-bar">
+        <div class="login-band">
+            <form method="post">
+                <a type="submit" asp-controller="Login" asp-action="Logout" value="Logout" class="login-link-color">Logout</a><span id="lblExpire" class="text-danger-timeout" style="margin-left:10px"></span>
+            </form>
+        </div>
+    <div><img src="/images/rotorycluboftrurologo.png" alt="rotorycluboftrurologo" /></div>
+    <div class="main-admin-delete">
+        <p>Are you sure you want to permanently delete all applications from the database?</p>
+        <div class="mb-2">
+            @* hidden field is using the link id to know which link information to delete *@
+        <div class="form-group pt-3">
+            @* <input type="hidden" asp-for="@Model.appID" value="@Model.appID"> *@
+            <button type="submit" asp-controller="Admin" asp-action="DeleteAllSubmit" class="button-delete" value="Delete">Delete</button>&nbsp;
+            <a asp-controller="Admin" asp-action="Index"><button type="button" class="button-delete" value="Cancel">Cancel</button></a>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+    <script>
+        startAutoLogout();
+    </script>
+}

@@ -1,0 +1,166 @@
+﻿@model Student;
+
+<div class="nav-bar">
+    <div class="login-band">
+        <form method="post">
+            <a type="submit" asp-controller="Login" asp-action="Index" value="Login" class="login-link-color">Member Login</a>
+        </form>
+    </div>
+    <div><a asp-controller="Home" asp-action="Index" value="Go Back" text="Go Back"><img src="/images/rotorycluboftrurologo.png" alt="rotorycluboftrurologo" /></a></div>
+</div>
+<div class="main-add">
+    <div class="col">
+        <form enctype="multipart/form-data" method="post">
+            @* <p>Scholarship Criteria:
+                The bursary is awarded to students graduating from grade 12 and continuing on to a college, university or a minimum 20 week post-secondary training program. Financial need and community service will be taken into consideration.
+                Please submit completed application along with a copy of your transcript, two letters of reference and any supplemental documents you wish to include. Application deadline: May 1st.
+            </p> *@
+            <div>All applications are protected when submitted.</div><br>
+            <div>
+                <div class="add-input">
+                    <label>Please select your current school:</label>
+                <select class="dropdown" id="schools" asp-for="@Model.schoolID" style="width:250px;max-width:250px;" asp-items="ViewBag.selectList" >
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Full Name:</label>
+                </div>
+                <input type="text" placeholder="Full Name" asp-for="@Model.appName" class="form-control" maxlength="50" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.appName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Mailing Address:</label>
+                </div>
+                <input type="text" placeholder="street, city, province, postal code" asp-for="@Model.address" class="form-control" maxlength="100" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Email:</label>
+                </div>
+                <input type="text" placeholder="example@example.com" asp-for="@Model.email" class="form-control" maxlength="100" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Home Phone:</label>
+                </div>
+                <input type="text" placeholder="xxx-xxx-xxxx" asp-for="@Model.homePhone" class="form-control" maxlength="100" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.homePhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Cell Number:</label>
+                </div>
+                <input type="tel" placeholder="xxx-xxx-xxxx" asp-for="@Model.cellPhone" class="form-control" maxlength="100" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.cellPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Grade Average (includes grades 10-12):</label>
+                </div>
+                <input type="number" placeholder="xx" min="1" max="100" asp-for="@Model.gradeAvg" class="form-control" maxlength="100" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.gradeAvg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Name of Post-secondary Institution:</label>
+                </div>
+                <input type="text" placeholder="Name of School" asp-for="@Model.collegeName" class="form-control" maxlength="100" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.collegeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Program of Study:</label>
+                </div>
+                <input type="text" placeholder="Program" asp-for="@Model.progName" class="form-control" maxlength="100" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.progName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Acceptance Letter Received (yes or no):</label>
+                </div>
+                <input type="text" type="text" placeholder="Yes/No" asp-for="@Model.hasLetter" class="form-control" maxlength="100" style="width:225x;max-width:225px;">
+                <span asp-validation-for="@Model.hasLetter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Program Start Date:</label>
+                </div>
+                <input type="date" asp-for="@Model.progStart" class="form-control" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.progStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Program Duration:</label>
+                </div>
+                <input type="text" asp-for="@Model.progDuration" class="form-control" style="width:225x;max-width:225px;" />
+                <span asp-validation-for="@Model.progDuration" class="text-danger"></span>
+            </div>
+            @{
+                Info info = ViewBag.info;
+                Files files = ViewBag.files;
+            }
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Plans following completion of program:</label>
+                    <span asp-validation-for="@info.plans" class="text-danger"></span>
+                </div>
+                <textarea type="text" placeholder="Type here..." type="text" asp-for="@info.plans" class="form-control" maxlength="100"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Description of Financial Need:</label>
+                    <span asp-validation-for="@info.finNeed" class="text-danger"></span>
+                </div>
+                <textarea type="text" placeholder="Type here..." asp-for="@info.finNeed" class="form-control" maxlength="100"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>Employment. List any jobs held, indicating full/part-time:</label>
+                    <span asp-validation-for="@info.job" class="text-danger"></span>
+                </div>
+                <textarea type="text" placeholder="Type here..." asp-for="@info.job" class="form-control" maxlength="100"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="add-input">
+                    <label>List any volunteer activities and your level of contribution:</label>
+                    <span asp-validation-for="@info.volunteer" class="text-danger"></span>
+                </div>
+                <textarea type="text" placeholder="Type here..." asp-for="@info.volunteer" class="form-control" maxlength="100"></textarea>
+            </div>
+            
+            <div class="choosefile">
+                <div class="file-button-label">
+                    <label>Upload a copy of your resume:</label>
+                </div><br>
+                <label class="file-button">
+                    Choose File<input id="btnUpload1" name="selectedFile1" type="file" onchange="showname()" hidden>
+                </label>
+                &nbsp;<span id="upload1"></span>
+            </div><br>
+            <span id="feedback1" class="text-danger">@ViewData["feedback1"]</span>
+            <span id="feedbacksuccess1" class="text-danger">@ViewData["feedbacksuccess1"]</span>
+            <div class="choosefile">
+                <div class="file-button-label">
+                    <label>Upload a copy of your transcript:</label>
+                </div><br>
+                <label class="file-button">
+                    Choose File<input id="btnUpload2" name="selectedFile2" type="file" onchange="showname()" hidden>
+                </label>
+                &nbsp;<span id="upload2"></span>
+            </div><br>
+            <span id="feedback2" class="text-danger">@ViewData["feedback2"]</span><br><br>
+            <span id="feedbacksuccess2" class="text-danger">@ViewData["feedbacksuccess2"]</span><br><br>
+            <div>Selected recipients will be notified at convocation.</div><br>
+            <div>Deadline: May 15th</div>
+            <div class="buttons">
+                <button class="button-add" type="submit" asp-controller="Home" asp-action="AddSubmit">Submit</button>&nbsp;
+                <a asp-controller="Home" asp-action="Index"><button  class="button-add" type="button"  value="Cancel">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+</div>

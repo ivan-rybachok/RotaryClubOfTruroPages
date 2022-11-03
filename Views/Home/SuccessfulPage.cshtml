@@ -1,0 +1,18 @@
+@model Student;
+
+<div class="nav-bar">
+    <div class="login-band">
+        <form method="post">
+            <a type="submit" asp-controller="Login" asp-action="Index" value="Login" class="login-link-color">Member Login</a>
+        </form>
+    </div>
+    <div><a asp-controller="Home" asp-action="Index" value="Go Back" text="Go Back"><img src="/images/rotorycluboftrurologo.png" alt="rotorycluboftrurologo" /></a></div>
+</div>
+<form method="post">
+    <div class="main">
+        <div class="">
+            <h3>Your application has been submitted. Thank you for applying!</h3>
+            <button type="submit" asp-controller="Home" asp-action="Index" class="btn btn-warning">Return Home</button>
+        </div>
+    </div>
+</form>

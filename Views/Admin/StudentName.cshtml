@@ -1,0 +1,102 @@
+@model Student;
+
+<form asp-controller="Admin" asp-action="Home">
+    <div class="nav-bar">
+        <div class="login-band">
+            <form method="post">
+                <a type="submit" asp-controller="Login" asp-action="Logout" value="Logout" class="login-link-color">Logout</a><span id="lblExpire" class="text-danger-timeout" style="margin-left:10px"></span>
+            </form>
+        </div>
+    <div><img src="/images/rotorycluboftrurologo.png" alt="rotorycluboftrurologo"/></div>
+    <div class="main-admin">
+        <div>
+            <div class="table-centered">
+                <table class="table-studentname">
+                    <tbody class="form-style">
+                        <tr>
+                        <th scope="row">Student Name:</th>
+                            <td class="col-sm-6">@Model.appName</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Mailing Address:</th>
+                            <td class="col-sm-6">@Model.address</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Email:</th>
+                            <td class="col-sm-6">@Model.email</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Home Phone:</th>
+                            <td class="col-sm-6">@Model.homePhone</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Cell Phone:</th>
+                            <td class="col-sm-6">@Model.cellPhone</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Grade Average:</th>
+                            <td class="col-sm-6">@Model.gradeAvg</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Post-secondary School:</th>
+                            <td class="col-sm-6">@Model.collegeName</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Program Name:</th>
+                            <td class="col-sm-6">@Model.progName</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Acceptance Letter Received?:</th>
+                            <td class="col-sm-6">@Model.hasLetter</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Program Start Date:</th>
+                            <td class="col-sm-6">@Model.progStart</td>
+                        </tr>
+                        <th scope="row">Program Duration:</th>
+                            <td class="col-sm-6">@Model.progDuration</td>
+                        </tr>
+                        @foreach (var student in ViewBag.list) {
+                            <tr>
+                                <th scope="row">Plans Following Completion of Program:</th>
+                                <td class="col-sm-6">@student.plans</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Description of Financial Need:</th>
+                                <td class="col-sm-6">@student.finNeed</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Employment:</th>
+                                <td class="col-sm-6">@student.job</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Volunteer Activities:</th>
+                                <td class="col-sm-6">@student.volunteer</td>
+                            </tr>
+                        }
+                        @foreach (var files in ViewBag.files) {
+                            <tr>
+                                <th scope="row">Submitted Resume:</th>
+                                <td class="col-sm-6"><a class="table-links" href="/uploads/@(files.resume)" download>@files.resume</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Submitted Transcript:</th>
+                                <td class="col-sm-6"><a class="table-links" href="/uploads/@(files.transcript)" download>@files.transcript</a></td>
+                            </tr>
+                            @* <tr>
+                                <th scope="row">Submitted Letter of Reference:</th>
+                                <td class="col-sm-6"><a href="/uploads/@(files.refLetter)" download>@files.refLetter</a></td>
+                            </tr> *@
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="btn-delete">
+                <form method="post">
+                    <button asp-controller="Admin" asp-action="Delete" asp-route-appID="@Model.appID" class="button-delete" >Delete Application</button>&nbsp;
+                    <a asp-controller="Admin" asp-action="Index"><button type="button" value="Cancel" class="button-delete" >Cancel</button></a>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>

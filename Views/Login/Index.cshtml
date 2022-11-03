@@ -1,0 +1,36 @@
+﻿<div class="nav-bar">
+    <div class="login-band">
+        <form method="post">
+            <a type="submit" asp-controller="Home" value="Go Back" text="Go Back" class="login-link-color">Home</a>
+        </form>
+    </div>
+    <div><a asp-controller="Home" asp-action="Index" value="Go Back" text="Go Back"><img src="/images/rotorycluboftrurologo.png" alt="rotorycluboftrurologo" /></a></div>
+</div>
+<div class="main-login">
+    <form asp-controller="Login" asp-action="Submit">
+        <div class="col">
+            <h2>Member Login</h2>
+        </div>
+        <form>  
+            <div class="login-form">  
+                <div> 
+                    <div class="login-input">
+                        <label for="txtUserName">Username:</label>
+                    </div>
+                    <input type="text" name="myUsername" class="form-control" maxlength="30"/>
+                </div>
+                <div>
+                    <div class="login-input">
+                        <label for="txtPassword">Password:</label>
+                    </div>
+                    <input type="password" name="myPassword" class="form-control" maxlength="30"/> 
+                </div>
+                <div class="buttons">
+                    <button class="button-add" type="submit" text="Submit">Submit</button>&nbsp;
+                    <button class="button-add" type="submit" asp-action="Index" asp-controller="Home" value="Cancel" text="Cancel">Cancel</button>
+                </div>
+                <span class="text-danger" style="margin-left:5px;">@ViewData["feedback"]</span>
+            </div>   
+        </form> 
+    </form>
+</div>

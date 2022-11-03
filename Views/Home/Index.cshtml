@@ -1,0 +1,35 @@
+<div class="nav-bar">
+    <div class="login-band">
+        <form method="post">
+            <a type="submit" asp-controller="Login" value="Login" class="login-link-color">Member Login</a>
+        </form>
+    </div>
+    <div><a asp-controller="Home" asp-action="Index" value="Go Back" text="Go Back"><img
+                src="/images/rotorycluboftrurologo.png" alt="rotorycluboftrurologo" /></a></div>
+</div>
+<div class="row my-2">
+    <div class="col">
+        <div class="main">
+            <form method="post">
+                <div class="paragraph">The Rotary Club of Truro supports various youth programs within Colchester County
+                    including the STRIVE program at Cobequid Education Centre, Youth Leadership Awards (RYLA), and high
+                    school bursary programs.<br><br>
+                    <b>High School Bursary Criteria:</b> The bursary is awarded to students graduating from grade 12 and
+                    continuing further education at a college, university or a minimum 20 week post-secondary training
+                    program. Financial need and community service will be taken into consideration.<br><br>
+                    Completed applications require an uploaded copy of your resume and official
+                    transcript.<br><br>Application deadline: May 15th.
+                </div>
+                <div class="add-button">
+                    <button type="submit" class="btn btn-warning" asp-controller="Home" asp-action="Add">Apply
+                        Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="footer-color">
+        Copyright © 2022 Rotory Club of Truro
+    </div>
+</div>
